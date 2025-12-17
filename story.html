@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storytelling - Gelato Code AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .story-hero {
+            background: linear-gradient(135deg, #8B6F47 0%, #C49A6C 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            margin-top: 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .story-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,182,193,0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(180,231,206,0.1) 0%, transparent 50%);
+        }
+        
+        .story-hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .years-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+        
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, 
+                var(--color-terracotta) 0%,
+                var(--color-gold) 50%,
+                var(--color-terracotta) 100%);
+        }
+        
+        .chapter {
+            position: relative;
+            margin-bottom: 5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        .chapter:nth-child(1) { animation-delay: 0.1s; }
+        .chapter:nth-child(2) { animation-delay: 0.2s; }
+        .chapter:nth-child(3) { animation-delay: 0.3s; }
+        .chapter:nth-child(4) { animation-delay: 0.4s; }
+        .chapter:nth-child(5) { animation-delay: 0.5s; }
+        
+        .chapter-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .chapter:nth-child(even) .chapter-content {
+            flex-direction: row-reverse;
+        }
+        
+        .chapter-number {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+        
+        .chapter:nth-child(even) .chapter-number {
+            text-align: center;
+        }
+        
+        .chapter-circle {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-gold));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: var(--font-heading);
+            box-shadow: 0 10px 30px rgba(196, 154, 108, 0.4);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .circle-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .circle-label {
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            opacity: 0.9;
+        }
+        
+        .chapter-card {
+            flex: 1;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .chapter-icon {
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            font-size: 3rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+        
+        .chapter-title {
+            font-size: 2rem;
+            color: var(--color-brown-dark);
+            margin-bottom: 1rem;
+            font-family: var(--font-heading);
+        }
+        
+        .chapter-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-terracotta);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chapter-text {
+            color: var(--color-text-primary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chapter-highlights {
+            background: var(--color-bg-cream);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+        }
+        
+        .chapter-highlights h4 {
+            color: var(--color-brown-dark);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .chapter-highlights ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .chapter-highlights li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--color-text-light);
+        }
+        
+        .chapter-highlights li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--color-terracotta);
+            font-weight: bold;
+        }
+        
+        .stats-section {
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-terracotta-dark));
+            padding: 5rem 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 3rem auto 0;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: var(--font-heading);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+        
+        .cta-final {
+            background: var(--color-bg-cream);
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .cta-final h2 {
+            font-size: 3rem;
+            color: var(--color-brown-dark);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-final p {
+            font-size: 1.3rem;
+            color: var(--color-text-light);
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .timeline-line {
+                left: 30px;
+            }
+            
+            .chapter-content {
+                flex-direction: column !important;
+                gap: 1.5rem;
+            }
+            
+            .chapter:nth-child(even) .chapter-content {
+                flex-direction: column !important;
+            }
+            
+            .chapter-number {
+                flex: none;
+            }
+            
+            .chapter-circle {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .circle-year {
+                font-size: 1.2rem;
+            }
+            
+            .chapter-card {
+                padding: 2rem;
+            }
+            
+            .chapter-title {
+                font-size: 1.5rem;
+            }
+            
+            .stat-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>GELATO CODE AI</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="calculator.html">Calculator</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="story.html" class="active">Storytelling</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="story-hero">
+        <div class="story-hero-content">
+            <div class="years-badge">9 YEARS OF MASTERY</div>
+            <h1 style="font-size: 4rem; margin-bottom: 1rem;">My Journey</h1>
+            <p style="font-size: 1.5rem; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+                From Entrepreneur to Gelato Expert
+            </p>
+            <p style="font-size: 1.1rem; opacity: 0.85; margin-top: 1rem;">
+                Every challenge, every mistake, every victory—synthesized into your shortcut to success
+            </p>
+        </div>
+    </section>
+
+    <div class="rainbow-divider"></div>
+
+    <!-- Timeline Section -->
+    <section style="background: linear-gradient(135deg, #F5E6D3 0%, #FFE8D6 100%); position: relative;">
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <!-- Chapter 1 -->
+            <div class="chapter">
+                <div class="chapter-content">
+                    <div class="chapter-number">
+                        <div class="chapter-circle">
+                            <div class="circle-year">2017</div>
+                            <div class="circle-label">Chapter 1</div>
+                        </div>
+                    </div>
+                    <div class="chapter-card">
+                        <div class="chapter-icon">🚀</div>
+                        <h2 class="chapter-title">Chapter 1</h2>
+                        <h3 class="chapter-subtitle">The Entrepreneurial Spark</h3>
+                        <p class="chapter-text">
+                            The adventure began in December 2017, marking the start of a four-year journey managing my own gelato stores in my home country. I started with a small shop, quickly expanded to a mall kiosk, and then invested in a larger, full-service local.
+                        </p>
+                        <p class="chapter-text">
+                            These early years were a baptism by fire. I learned the hard way how to manage a brand, scale a business, and adapt to local tastes—from simple gelato pops and cones to creative offerings like fruit salads with ice cream and custom pints.
+                        </p>
+                        <div class="chapter-highlights">
+                            <h4>Key Lessons:</h4>
+                            <ul>
+                                <li>Built and scaled from small shop to full-service location</li>
+                                <li>Learned brand management and local market adaptation</li>
+                                <li>Discovered the critical lesson: hard work + knowledge = success</li>
+                                <li>Made mistakes chasing "perfect location," but gained wisdom</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 2 -->
+            <div class="chapter">
+                <div class="chapter-content">
+                    <div class="chapter-number">
+                        <div class="chapter-circle">
+                            <div class="circle-year">2020</div>
+                            <div class="circle-label">Chapter 2</div>
+                        </div>
+                    </div>
+                    <div class="chapter-card">
+                        <div class="chapter-icon">🔥</div>
+                        <h2 class="chapter-title">Chapter 2</h2>
+                        <h3 class="chapter-subtitle">The Test of Fire</h3>
+                        <p class="chapter-text">
+                            When the world paused in the pandemic, my business didn't. We quickly pivoted our small factory space at home into a full-scale delivery operation, relying on Facebook, WhatsApp, Instagram, and delivery platforms as our lifelines.
+                        </p>
+                        <p class="chapter-text">
+                            Working alongside my family, we navigated the crisis as one of the only ice cream shops open. This period was a profound test of resilience. We not only survived but thrived, proving that adaptability can overcome any obstacle.
+                        </p>
+                        <div class="chapter-highlights">
+                            <h4>Achievements:</h4>
+                            <ul>
+                                <li>Transformed home factory into full delivery operation</li>
+                                <li>Leveraged social media and delivery platforms</li>
+                                <li>One of the only shops open during pandemic</li>
+                                <li>Opened large concept store in main mall food court</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 3 -->
+            <div class="chapter">
+                <div class="chapter-content">
+                    <div class="chapter-number">
+                        <div class="chapter-circle">
+                            <div class="circle-year">2021</div>
+                            <div class="circle-label">Chapter 3</div>
+                        </div>
+                    </div>
+                    <div class="chapter-card">
+                        <div class="chapter-icon">🗽</div>
+                        <h2 class="chapter-title">Chapter 3</h2>
+                        <h3 class="chapter-subtitle">The Call to Global Mastery</h3>
+                        <p class="chapter-text">
+                            I made the difficult decision to sell my successful business (which still operates under the original brand) and chase the heart of the industry: New York City. I quickly secured a position with one of the largest global gelato companies.
+                        </p>
+                        <p class="chapter-text">
+                            Over the next three years, I dedicated myself to over 5,000 hours of hands-on work in advanced gelateria operations globally. I moved beyond pre-made mixes to making my own Cream Base using a pasteurizer, substituting ingredients, and learning high-volume efficiency—producing 60 flats of 4kg in a single day.
+                        </p>
+                        <div class="chapter-highlights">
+                            <h4>The Challenge:</h4>
+                            <ul>
+                                <li>Left family and sold successful business for mastery</li>
+                                <li>5,000+ hours of professional hands-on experience</li>
+                                <li>Mastered pasteurization and custom base creation</li>
+                                <li>Achieved high-volume efficiency: 60 flats (240kg) per day</li>
+                                <li>Overcame language barriers and cultural differences</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 4 -->
+            <div class="chapter">
+                <div class="chapter-content">
+                    <div class="chapter-number">
+                        <div class="chapter-circle">
+                            <div class="circle-year">2023</div>
+                            <div class="circle-label">Chapter 4</div>
+                        </div>
+                    </div>
+                    <div class="chapter-card">
+                        <div class="chapter-icon">👨‍🏫</div>
+                        <h2 class="chapter-title">Chapter 4</h2>
+                        <h3 class="chapter-subtitle">The Ascent to Expertise</h3>
+                        <p class="chapter-text">
+                            My dedication led to advancement. I began traveling across the country, training diverse teams and cultures. I was teaching and perfecting the highest-level gelato techniques, mastering every step of professional production.
+                        </p>
+                        <p class="chapter-text">
+                            I supplemented my 9 years of practical experience by studying Italian gelato books, advanced courses, and professional training. Every aspect from refined technique to warehouse management became second nature.
+                        </p>
+                        <div class="chapter-highlights">
+                            <h4>Mastery Achieved:</h4>
+                            <ul>
+                                <li>Advanced to training role across multiple locations</li>
+                                <li>Taught diverse teams and cultures nationwide</li>
+                                <li>Mastered refined technique, timings, and precision</li>
+                                <li>Expert in warehouse & inventory management</li>
+                                <li>Studied Italian gelato literature and advanced courses</li>
+                                <li>9 years total: 4 years owning + 5,000 hours professional</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chapter 5 -->
+            <div class="chapter">
+                <div class="chapter-content">
+                    <div class="chapter-number">
+                        <div class="chapter-circle">
+                            <div class="circle-year">2025</div>
+                            <div class="circle-label">Chapter 5</div>
+                        </div>
+                    </div>
+                    <div class="chapter-card">
+                        <div class="chapter-icon">🎁</div>
+                        <h2 class="chapter-title">Chapter 5</h2>
+                        <h3 class="chapter-subtitle">Your Shortcut to Success</h3>
+                        <p class="chapter-text">
+                            My journey was defined by overcoming debts, cultural barriers, language barriers, and years away from my family—a true testament to the passion that drives us. Every challenge, every mistake with equipment, every formula I corrected under pressure, has been synthesized into a robust body of knowledge.
+                        </p>
+                        <p class="chapter-text">
+                            Now, I'm delivering that complete knowledge directly to you.
+                        </p>
+                        <div class="chapter-highlights">
+                            <h4>What You Get:</h4>
+                            <ul>
+                                <li>9 years of hard-earned experience in one platform</li>
+                                <li>Skip the setbacks and go straight to quality</li>
+                                <li>Proven methodology for profitability and mastery</li>
+                                <li>No debts, no barriers, no years of struggle</li>
+                                <li>Complete knowledge from entrepreneurship to expertise</li>
+                                <li>Your guide to professional gelato excellence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 style="font-size: 3rem; margin-bottom: 1rem;">The Numbers Behind the Journey</h2>
+            <p style="font-size: 1.2rem; opacity: 0.95; max-width: 700px; margin: 0 auto;">
+                A testament to dedication, resilience, and mastery
+            </p>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5,000+</div>
+                    <div class="stat-label">Professional Hours</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Years as Owner</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Countries Worked</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-final">
+        <div class="container">
+            <h2>Let My Journey Be Your Shortcut</h2>
+            <p>
+                I walked through fire so you don't have to. Every lesson learned, every formula perfected, 
+                every technique mastered—all available in one comprehensive platform. 
+                Skip the struggle and go straight to professional excellence.
+            </p>
+            <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                <a href="resources/levels.html" class="btn-primary-large">Choose Your Level</a>
+                <a href="calculator.html" class="btn-secondary-large">Start Creating</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>GELATO CODE AI</h3>
+                    <p>9 Years of Mastery at Your Fingertips</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="calculator.html">Calculator</a></li>
+                            <li><a href="resources.html">Resources</a></li>
+                            <li><a href="resources/levels.html">Membership</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="story.html">Storytelling</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gelato Code AI. Built with 9 years of passion.</p>
+                <div class="footer-rainbow"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

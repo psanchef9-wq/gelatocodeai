@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership Levels - Gelato Code AI</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .pricing-hero {
+            background: linear-gradient(135deg, #8B6F47 0%, #C49A6C 100%);
+            color: white;
+            padding: 8rem 0 4rem;
+            margin-top: 70px;
+            text-align: center;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pricing-card {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            border-color: var(--color-terracotta);
+        }
+        
+        .pricing-card.featured {
+            border-color: var(--color-terracotta);
+            box-shadow: 0 20px 50px rgba(196, 154, 108, 0.3);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.08) translateY(-10px);
+        }
+        
+        .featured-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--color-terracotta), var(--color-gold));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .level-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--color-bg-secondary), var(--color-bg-primary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+        
+        .level-name {
+            font-size: 1.8rem;
+            color: var(--color-brown-dark);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+        }
+        
+        .level-subtitle {
+            color: var(--color-text-light);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+        
+        .price-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: var(--color-bg-cream);
+            border-radius: 15px;
+        }
+        
+        .price {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-terracotta);
+            font-family: var(--font-heading);
+            line-height: 1;
+        }
+        
+        .price-currency {
+            font-size: 2rem;
+            vertical-align: top;
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            color: var(--color-text-light);
+            font-weight: 400;
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        .features-list {
+            list-style: none;
+            margin: 2rem 0;
+            padding: 0;
+        }
+        
+        .features-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--color-bg-secondary);
+            display: flex;
+            align-items: flex-start;
+            color: var(--color-text-primary);
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            color: var(--color-terracotta);
+            margin-right: 1rem;
+            font-size: 1.3rem;
+            min-width: 25px;
+        }
+        
+        .feature-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+        
+        .feature-title {
+            font-weight: 600;
+            color: var(--color-brown-dark);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+        
+        .feature-detail {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+        
+        .select-btn {
+            width: 100%;
+            padding: 1.2rem 2rem;
+            background: var(--color-terracotta);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .select-btn:hover {
+            background: var(--color-terracotta-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(196, 154, 108, 0.4);
+        }
+        
+        .select-btn.selected {
+            background: var(--color-gold);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+        }
+        
+        .equipment-specs {
+            background: var(--color-bg-cream);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .equipment-specs h4 {
+            color: var(--color-brown-dark);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .spec-label {
+            color: var(--color-text-light);
+        }
+        
+        .spec-value {
+            color: var(--color-text-primary);
+            font-weight: 600;
+        }
+        
+        .comparison-table {
+            margin-top: 4rem;
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--color-brown-dark);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background: var(--color-terracotta);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-bg-secondary);
+        }
+        
+        tr:hover {
+            background: var(--color-bg-cream);
+        }
+        
+        .check-icon {
+            color: var(--color-terracotta);
+            font-weight: bold;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            color: var(--color-brown-dark);
+            margin-bottom: 1rem;
+        }
+        
+        .close-modal {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--color-terracotta);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .price {
+                font-size: 2.5rem;
+            }
+            
+            .comparison-table {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>GELATO CODE AI</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../services.html">Services</a></li>
+                <li><a href="../calculator.html">Calculator</a></li>
+                <li><a href="../resources.html" class="active">Resources</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h1 style="color: white; font-size: 4rem; margin-bottom: 1rem;">Choose Your Level</h1>
+            <p style="font-size: 1.3rem; opacity: 0.95; max-width: 800px; margin: 0 auto;">
+                Select the membership level that fits your gelato business needs. 
+                Get access to recipes, equipment guides, and professional support.
+            </p>
+        </div>
+    </section>
+
+    <div class="rainbow-divider"></div>
+
+    <!-- Pricing Cards -->
+    <section style="padding: 5rem 0; background: linear-gradient(135deg, #F5E6D3 0%, #FFE8D6 100%);">
+        <div class="container">
+            <div class="pricing-grid">
+                
+                <!-- ENTRY LEVEL -->
+                <div class="pricing-card" id="card-entry">
+                    <div class="level-icon">🏠</div>
+                    <h2 class="level-name">Home Entry Level</h2>
+                    <p class="level-subtitle">Perfect for families and hobbyists</p>
+                    
+                    <div class="price-container">
+                        <div class="price">
+                            <span class="price-currency">$</span>20
+                        </div>
+                        <span class="price-period">per month</span>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">1-15 Recipes</span>
+                                <span class="feature-detail">Basic gelato recipes for home use</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Production Time</span>
+                                <span class="feature-detail">Occasional use, 1 batch per 24h</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Batch Capacity</span>
+                                <span class="feature-detail">1-3 Liters per batch</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Equipment Guide</span>
+                                <span class="feature-detail">Home kitchen equipment recommendations</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Basic Calculator Access</span>
+                                <span class="feature-detail">Simple recipe calculations</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Best For</span>
+                                <span class="feature-detail">Families, home cooks, hobbyists, gifts</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="equipment-specs">
+                        <h4>Equipment Included:</h4>
+                        <div class="spec-item">
+                            <span class="spec-label">Machine</span>
+                            <span class="spec-value">Non-compressor (entry)</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Mixer</span>
+                            <span class="spec-value">Hand blender / Vitamix</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Storage</span>
+                            <span class="spec-value">Domestic freezer</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Investment</span>
+                            <span class="spec-value">$50 - $1,500</span>
+                        </div>
+                    </div>
+                    
+                    <button class="select-btn" onclick="selectPlan('entry', '$20/month', 'Home Entry Level')">
+                        Select Entry Level
+                    </button>
+                </div>
+
+                <!-- INTERMEDIATE LEVEL - FEATURED -->
+                <div class="pricing-card featured" id="card-intermediate">
+                    <div class="featured-badge">Most Popular</div>
+                    <div class="level-icon">⭐</div>
+                    <h2 class="level-name">Intermediate Pro</h2>
+                    <p class="level-subtitle">For serious makers and small businesses</p>
+                    
+                    <div class="price-container">
+                        <div class="price">
+                            <span class="price-currency">$</span>50
+                        </div>
+                        <span class="price-period">per month</span>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">15-30 Recipes</span>
+                                <span class="feature-detail">Professional cream & sorbet recipes</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Production Time</span>
+                                <span class="feature-detail">Daily intensive use, batch every hour</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Batch Capacity</span>
+                                <span class="feature-detail">2-12 Liters per batch</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Professional Equipment</span>
+                                <span class="feature-detail">Pasteurizer, blast chiller, commercial machines</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Advanced Calculator</span>
+                                <span class="feature-detail">Full PAC/POD/MSNF analysis</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">AI Expert Support</span>
+                                <span class="feature-detail">24/7 AI consultation system</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Suppliers Database</span>
+                                <span class="feature-detail">85+ verified suppliers and contacts</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Best For</span>
+                                <span class="feature-detail">Boutique gelaterias, food trucks, restaurants</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="equipment-specs">
+                        <h4>Equipment Included:</h4>
+                        <div class="spec-item">
+                            <span class="spec-label">Machine</span>
+                            <span class="spec-value">Commercial compressor</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Pasteurizer</span>
+                            <span class="spec-value">20-30L batch</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Blast Chiller</span>
+                            <span class="spec-value">Countertop commercial</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Investment</span>
+                            <span class="spec-value">$15,000 - $40,000</span>
+                        </div>
+                    </div>
+                    
+                    <button class="select-btn" onclick="selectPlan('intermediate', '$50/month', 'Intermediate Pro')">
+                        Select Intermediate
+                    </button>
+                </div>
+
+                <!-- PROFESSIONAL LEVEL -->
+                <div class="pricing-card" id="card-professional">
+                    <div class="level-icon">👑</div>
+                    <h2 class="level-name">Professional Elite</h2>
+                    <p class="level-subtitle">For high-volume production and franchises</p>
+                    
+                    <div class="price-container">
+                        <div class="price">
+                            <span class="price-currency">$</span>100
+                        </div>
+                        <span class="price-period">per month</span>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">30-150+ Recipes</span>
+                                <span class="feature-detail">Complete professional recipe library</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Production Time</span>
+                                <span class="feature-detail">Intensive continuous production</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Batch Capacity</span>
+                                <span class="feature-detail">12-25+ Liters per batch</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Industrial Equipment</span>
+                                <span class="feature-detail">Walk-in freezers, high-volume pasteurizers</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Complete Platform Access</span>
+                                <span class="feature-detail">All calculators, databases, and tools</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Priority AI Support</span>
+                                <span class="feature-detail">Instant responses, custom consultations</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Production Systems</span>
+                                <span class="feature-detail">Quality checklists, cleaning protocols</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Custom Formulations</span>
+                                <span class="feature-detail">Personalized recipe development</span>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="feature-icon">✓</span>
+                            <div class="feature-text">
+                                <span class="feature-title">Best For</span>
+                                <span class="feature-detail">High-traffic gelaterias, franchises, production</span>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <div class="equipment-specs">
+                        <h4>Equipment Included:</h4>
+                        <div class="spec-item">
+                            <span class="spec-label">Machine</span>
+                            <span class="spec-value">Multiple industrial units</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Pasteurizer</span>
+                            <span class="spec-value">60-120L high volume</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Storage</span>
+                            <span class="spec-value">Walk-in freezers</span>
+                        </div>
+                        <div class="spec-item">
+                            <span class="spec-label">Investment</span>
+                            <span class="spec-value">$80,000 - $150,000+</span>
+                        </div>
+                    </div>
+                    
+                    <button class="select-btn" onclick="selectPlan('professional', '$100/month', 'Professional Elite')">
+                        Select Professional
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table -->
+    <section style="padding: 5rem 0; background: var(--color-bg-cream);">
+        <div class="container">
+            <div class="comparison-table">
+                <h2>Feature Comparison</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Entry Level</th>
+                            <th>Intermediate</th>
+                            <th>Professional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Monthly Price</strong></td>
+                            <td>$20</td>
+                            <td>$50</td>
+                            <td>$100</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Recipe Access</strong></td>
+                            <td>1-15 recipes</td>
+                            <td>15-30 recipes</td>
+                            <td>30-150+ recipes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Batch Capacity</strong></td>
+                            <td>1-3 Liters</td>
+                            <td>2-12 Liters</td>
+                            <td>12-25+ Liters</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Calculator</strong></td>
+                            <td>Basic</td>
+                            <td>Advanced</td>
+                            <td>Complete</td>
+                        </tr>
+                        <tr>
+                            <td><strong>AI Support</strong></td>
+                            <td>—</td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check-icon">✓ Priority</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Suppliers Database</strong></td>
+                            <td>—</td>
+                            <td><span class="check-icon">✓</span></td>
+                            <td><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Equipment Guide</strong></td>
+                            <td>Basic</td>
+                            <td>Professional</td>
+                            <td>Industrial</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Production Systems</strong></td>
+                            <td>—</td>
+                            <td>Basic</td>
+                            <td><span class="check-icon">✓ Complete</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Custom Formulations</strong></td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td><span class="check-icon">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>Home/Hobbyist</td>
+                            <td>Small Business</td>
+                            <td>High-Volume</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content">
+            <div class="modal-icon">🎉</div>
+            <h3 class="modal-title">Level Selected!</h3>
+            <p id="modalText" style="color: var(--color-text-light); margin-bottom: 1rem;"></p>
+            <p style="font-size: 2rem; font-weight: 700; color: var(--color-terracotta);" id="modalPrice"></p>
+            <p style="margin-top: 1rem; color: var(--color-text-light);">
+                We'll contact you shortly to complete your subscription and grant access to all features.
+            </p>
+            <button class="close-modal" onclick="closeModal()">Continue Exploring</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>GELATO CODE AI</h3>
+                    <p>Professional Gelato Membership</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Membership</h4>
+                        <ul>
+                            <li><a href="#card-entry">Entry Level</a></li>
+                            <li><a href="#card-intermediate">Intermediate</a></li>
+                            <li><a href="#card-professional">Professional</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <ul>
+                            <li><a href="../contact.html">Contact Us</a></li>
+                            <li><a href="../calculator.html#ai">AI Expert</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="../about.html">About</a></li>
+                            <li><a href="../resources.html">Resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gelato Code AI. All rights reserved.</p>
+                <div class="footer-rainbow"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script>
+        function selectPlan(level, price, name) {
+            // Visual feedback
+            document.querySelectorAll('.select-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            // Show confirmation modal
+            document.getElementById('modalText').textContent = `You've selected ${name}`;
+            document.getElementById('modalPrice').textContent = price;
+            document.getElementById('confirmModal').classList.add('active');
+            
+            // Store selection (could send to backend)
+            localStorage.setItem('selectedLevel', level);
+            localStorage.setItem('selectedPrice', price);
+            localStorage.setItem('selectedName', name);
+            
+            console.log('Selected:', { level, price, name });
+        }
+        
+        function closeModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+        }
+        
+        // Close modal when clicking outside
+        document.getElementById('confirmModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Check if user has already selected a level
+        window.addEventListener('load', function() {
+            const selectedLevel = localStorage.getItem('selectedLevel');
+            if (selectedLevel) {
+                const btn = document.querySelector(`#card-${selectedLevel} .select-btn`);
+                if (btn) {
+                    btn.classList.add('selected');
+                    btn.textContent = '✓ Current Level';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

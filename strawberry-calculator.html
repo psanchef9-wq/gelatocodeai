@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strawberry Gelato Calculator - Gelato Code AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .recipe-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .recipe-card.selected {
+            border: 3px solid #FFB6C1;
+            background: rgba(255, 182, 193, 0.1);
+        }
+        
+        .ingredient-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .ingredient-row:hover {
+            background: rgba(255, 182, 193, 0.05);
+        }
+        
+        .metric-card {
+            background: linear-gradient(135deg, #FFB6C1 0%, #FFF4A3 100%);
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+            color: #4A4035;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .input-group {
+            margin: 1rem 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #4A4035;
+        }
+        
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #FFB6C1;
+            box-shadow: 0 0 15px rgba(255, 182, 193, 0.3);
+        }
+        
+        .btn-calculate {
+            background: linear-gradient(135deg, #FFB6C1 0%, #D4C5F9 100%);
+            color: #4A4035;
+            padding: 1rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.3);
+        }
+        
+        .btn-calculate:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 182, 193, 0.4);
+        }
+        
+        .results-container {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .results-container.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin: 0.2rem;
+            background: rgba(212, 197, 249, 0.3);
+            color: #4A4035;
+        }
+    </style>
+</head>
+<body style="background-image: url('images/hero-background.png'); background-size: cover; background-position: center; background-attachment: fixed;">
+    
+    <!-- Overlay -->
+    <div style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.15); z-index: -1;"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <h1>GELATO CODE AI</h1>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="calculator.html" class="active">Calculator</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="calculator.html" class="btn-primary-nav">Get Started</a></li>
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section style="padding: 8rem 0 4rem;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <h1 style="font-size: 3rem; color: #FFFFFF; margin-bottom: 1rem; text-shadow: 0 0 25px rgba(255, 255, 255, 0.4), 0 3px 20px rgba(0,0,0,0.6); font-weight: 700;">
+                    🍓 Strawberry Gelato Calculator
+                </h1>
+                <p style="font-size: 1.25rem; color: rgba(255, 255, 255, 0.9); text-shadow: 0 2px 10px rgba(0,0,0,0.5);">
+                    Choose your recipe and calculate ingredients for perfect strawberry gelato
+                </p>
+            </div>
+
+            <!-- Recipe Selection -->
+            <div class="recipe-card">
+                <h2 style="font-size: 2rem; color: #FFB6C1; margin-bottom: 2rem;">Select Recipe Type</h2>
+                
+                <div class="input-group">
+                    <label for="recipeSelect">Choose Your Strawberry Gelato:</label>
+                    <select id="recipeSelect" onchange="loadRecipe()">
+                        <option value="">-- Select Recipe --</option>
+                        <option value="FRESA_001">Fresa Clásica - Traditional balanced recipe ($0.72/80g)</option>
+                        <option value="FRESA_002">Fresa Premium - High-end ingredients ($1.00/80g)</option>
+                        <option value="FRESA_003">Fresa Light - Low sugar & fat ($0.66/80g)</option>
+                        <option value="FRESA_004">Fresa Vegana - Dairy-free version ($0.86/80g)</option>
+                        <option value="FRESA_005">Fresa Intensa - High fruit concentration ($0.90/80g)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="batchSize">Batch Size (grams):</label>
+                    <input type="number" id="batchSize" value="1000" min="100" max="10000" step="100" onchange="recalculate()">
+                </div>
+
+                <div id="recipeInfo" style="margin-top: 2rem; display: none;">
+                    <!-- Recipe info will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Ingredients Table -->
+            <div id="ingredientsSection" class="recipe-card" style="display: none;">
+                <h2 style="font-size: 2rem; color: #FFB6C1; margin-bottom: 2rem;">📋 Ingredients</h2>
+                <div id="ingredientsList">
+                    <!-- Ingredients will be loaded here -->
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn-calculate" onclick="calculateMetrics()">
+                        Calculate Metrics
+                    </button>
+                </div>
+            </div>
+
+            <!-- Nutritional Metrics -->
+            <div id="metricsSection" class="results-container">
+                <h2 style="font-size: 2rem; color: #FFFFFF; text-align: center; margin: 3rem 0; text-shadow: 0 0 20px rgba(255, 255, 255, 0.3), 0 3px 15px rgba(0,0,0,0.6);">
+                    📊 Calculated Metrics
+                </h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <div class="metric-card">
+                        <div class="metric-label">Sweetening Power</div>
+                        <div class="metric-value" id="podValue">--</div>
+                        <div class="metric-label">POD</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-label">Anti-Freezing</div>
+                        <div class="metric-value" id="npacValue">--</div>
+                        <div class="metric-label">NPAC</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-label">Ice Fraction</div>
+                        <div class="metric-value" id="iceValue">--</div>
+                        <div class="metric-label">%</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-label">Fat Content</div>
+                        <div class="metric-value" id="fatValue">--</div>
+                        <div class="metric-label">%</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-label">Total Solids</div>
+                        <div class="metric-value" id="tsValue">--</div>
+                        <div class="metric-label">%</div>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <div class="metric-label">Total Cost</div>
+                        <div class="metric-value" id="costValue">--</div>
+                        <div class="metric-label">USD</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Production Notes -->
+            <div id="productionSection" class="results-container">
+                <div class="recipe-card">
+                    <h2 style="font-size: 2rem; color: #FFB6C1; margin-bottom: 2rem;">⚙️ Production Instructions</h2>
+                    <div id="productionNotes">
+                        <!-- Production notes will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>GELATO CODE AI</h3>
+                    <p>Professional Gelato Consulting & Education</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gelato Code AI. All rights reserved.</p>
+                <div class="footer-rainbow"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Recipe Database
+        const recipes = {
+            FRESA_001: {
+                name: "Fresa Clásica",
+                description: "Receta tradicional con equilibrio perfecto de dulzor y cremosidad",
+                category: "Fruit Gelato",
+                temperature: -11,
+                difficulty: "Intermediate",
+                prepTime: 30,
+                tags: ["Classic", "Traditional", "Balanced"],
+                ingredients: [
+                    {name: "sugar (sucrose)", category: "sweetener", quantity: 132, percentage: 13.21, cost: 0.12},
+                    {name: "dextrose", category: "sweetener", quantity: 43, percentage: 4.30, cost: 0.05},
+                    {name: "skimmed milk powder", category: "milk_protein", quantity: 83, percentage: 8.31, cost: 0.33},
+                    {name: "inulin", category: "fiber", quantity: 70, percentage: 7.01, cost: 7.00},
+                    {name: "WPC 80%", category: "milk_protein", quantity: 10.3, percentage: 1.03, cost: 0.21, notes: "Whey Protein Concentrate"},
+                    {name: "tara gum", category: "stabilizer", quantity: 1.8, percentage: 0.18, cost: 0.04, notes: "3.0 g/L"},
+                    {name: "milk 3.5%", category: "milk", quantity: 469, percentage: 46.94, cost: 0.47},
+                    {name: "cream 30% UHT", category: "cream", quantity: 190, percentage: 19.02, cost: 0.81}
+                ],
+                nutrition: {
+                    pod: 17.97,
+                    npac: 52.95,
+                    iceFraction: 42.71,
+                    fat: 7.37,
+                    totalSolids: 45.01
+                },
+                production: {
+                    mixingTemp: 4,
+                    pasteurizationTemp: 85,
+                    agingTime: 4,
+                    churningTemp: -5,
+                    instructions: "Standard production. Mix stabilizers with dry ingredients first."
+                }
+            },
+            FRESA_002: {
+                name: "Fresa Premium",
+                description: "Versión premium con mayor contenido de fruta y crema UHT",
+                category: "Fruit Gelato",
+                temperature: -11,
+                difficulty: "Advanced",
+                prepTime: 40,
+                tags: ["Premium", "Gourmet", "High-end"],
+                ingredients: [
+                    {name: "sugar (sucrose)", category: "sweetener", quantity: 120, percentage: 12.00, cost: 0.11},
+                    {name: "dextrose", category: "sweetener", quantity: 50, percentage: 5.00, cost: 0.06},
+                    {name: "skimmed milk powder", category: "milk_protein", quantity: 90, percentage: 9.00, cost: 0.36},
+                    {name: "inulin", category: "fiber", quantity: 80, percentage: 8.00, cost: 8.00},
+                    {name: "WPC 80%", category: "milk_protein", quantity: 15, percentage: 1.50, cost: 0.31},
+                    {name: "tara gum", category: "stabilizer", quantity: 2.0, percentage: 0.20, cost: 0.04, notes: "3.2 g/L"},
+                    {name: "milk 3.5%", category: "milk", quantity: 400, percentage: 40.00, cost: 0.40},
+                    {name: "cream 35% UHT", category: "cream", quantity: 243, percentage: 24.30, cost: 1.22, notes: "Premium cream"}
+                ],
+                nutrition: {
+                    pod: 19.20,
+                    npac: 55.40,
+                    iceFraction: 41.80,
+                    fat: 9.20,
+                    totalSolids: 47.50
+                },
+                production: {
+                    mixingTemp: 4,
+                    pasteurizationTemp: 85,
+                    agingTime: 6,
+                    churningTemp: -5,
+                    instructions: "Use high-quality cream. Extended aging improves texture."
+                }
+            },
+            FRESA_003: {
+                name: "Fresa Light",
+                description: "Versión reducida en azúcar y grasa para opción más saludable",
+                category: "Fruit Gelato",
+                temperature: -11,
+                difficulty: "Intermediate",
+                prepTime: 30,
+                tags: ["Light", "Low-Sugar", "Healthy"],
+                ingredients: [
+                    {name: "sugar (sucrose)", category: "sweetener", quantity: 100, percentage: 10.00, cost: 0.09, notes: "Reduced"},
+                    {name: "dextrose", category: "sweetener", quantity: 35, percentage: 3.50, cost: 0.04},
+                    {name: "skimmed milk powder", category: "milk_protein", quantity: 75, percentage: 7.50, cost: 0.30},
+                    {name: "inulin", category: "fiber", quantity: 90, percentage: 9.00, cost: 9.00, notes: "Extra fiber"},
+                    {name: "WPC 80%", category: "milk_protein", quantity: 12, percentage: 1.20, cost: 0.25},
+                    {name: "tara gum", category: "stabilizer", quantity: 1.5, percentage: 0.15, cost: 0.03},
+                    {name: "skimmed milk", category: "milk", quantity: 550, percentage: 55.00, cost: 0.44, notes: "Fat free"},
+                    {name: "cream 15%", category: "cream", quantity: 136.5, percentage: 13.65, cost: 0.55, notes: "Light cream"}
+                ],
+                nutrition: {
+                    pod: 15.80,
+                    npac: 48.20,
+                    iceFraction: 44.50,
+                    fat: 4.50,
+                    totalSolids: 41.20
+                },
+                production: {
+                    mixingTemp: 4,
+                    pasteurizationTemp: 85,
+                    agingTime: 4,
+                    churningTemp: -5,
+                    instructions: "Careful with overrun due to lower fat content."
+                }
+            },
+            FRESA_004: {
+                name: "Fresa Vegana",
+                description: "Sin lácteos, usando leche vegetal y estabilizantes naturales",
+                category: "Fruit Gelato",
+                temperature: -11,
+                difficulty: "Advanced",
+                prepTime: 45,
+                tags: ["Vegan", "Dairy-Free", "Plant-Based"],
+                ingredients: [
+                    {name: "sugar (sucrose)", category: "sweetener", quantity: 125, percentage: 12.50, cost: 0.11},
+                    {name: "dextrose", category: "sweetener", quantity: 40, percentage: 4.00, cost: 0.05},
+                    {name: "almond protein", category: "plant_protein", quantity: 60, percentage: 6.00, cost: 1.20},
+                    {name: "inulin", category: "fiber", quantity: 75, percentage: 7.50, cost: 7.50},
+                    {name: "pea protein", category: "plant_protein", quantity: 20, percentage: 2.00, cost: 0.40},
+                    {name: "xanthan gum", category: "stabilizer", quantity: 2.5, percentage: 0.25, cost: 0.05, notes: "Vegan stabilizer"},
+                    {name: "almond milk", category: "plant_milk", quantity: 500, percentage: 50.00, cost: 1.00, notes: "Unsweetened"},
+                    {name: "coconut cream", category: "plant_cream", quantity: 177.5, percentage: 17.75, cost: 0.71}
+                ],
+                nutrition: {
+                    pod: 17.50,
+                    npac: 51.20,
+                    iceFraction: 43.10,
+                    fat: 8.80,
+                    totalSolids: 44.30
+                },
+                production: {
+                    mixingTemp: 4,
+                    pasteurizationTemp: 75,
+                    agingTime: 6,
+                    churningTemp: -5,
+                    instructions: "Lower pasteurization temp. Blend plant proteins thoroughly."
+                }
+            },
+            FRESA_005: {
+                name: "Fresa Intensa",
+                description: "Mayor concentración de fruta para sabor más pronunciado",
+                category: "Fruit Gelato",
+                temperature: -11,
+                difficulty: "Advanced",
+                prepTime: 35,
+                tags: ["Intense", "High-Fruit", "Bold-Flavor"],
+                ingredients: [
+                    {name: "sugar (sucrose)", category: "sweetener", quantity: 110, percentage: 11.00, cost: 0.10},
+                    {name: "dextrose", category: "sweetener", quantity: 48, percentage: 4.80, cost: 0.06},
+                    {name: "skimmed milk powder", category: "milk_protein", quantity: 85, percentage: 8.50, cost: 0.34},
+                    {name: "inulin", category: "fiber", quantity: 65, percentage: 6.50, cost: 6.50},
+                    {name: "WPC 80%", category: "milk_protein", quantity: 11, percentage: 1.10, cost: 0.23},
+                    {name: "tara gum", category: "stabilizer", quantity: 1.9, percentage: 0.19, cost: 0.04},
+                    {name: "milk 3.5%", category: "milk", quantity: 450, percentage: 45.00, cost: 0.45},
+                    {name: "cream 30% UHT", category: "cream", quantity: 200, percentage: 20.00, cost: 0.85},
+                    {name: "strawberry puree", category: "fruit", quantity: 29.1, percentage: 2.91, cost: 0.15, notes: "Concentrated"}
+                ],
+                nutrition: {
+                    pod: 18.30,
+                    npac: 54.10,
+                    iceFraction: 42.20,
+                    fat: 7.80,
+                    totalSolids: 46.20
+                },
+                production: {
+                    mixingTemp: 4,
+                    pasteurizationTemp: 85,
+                    agingTime: 4,
+                    churningTemp: -6,
+                    instructions: "Add strawberry puree after base is ready. Intense color and flavor."
+                }
+            }
+        };
+
+        let currentRecipe = null;
+        let currentBatchSize = 1000;
+
+        function loadRecipe() {
+            const recipeId = document.getElementById('recipeSelect').value;
+            if (!recipeId) {
+                document.getElementById('recipeInfo').style.display = 'none';
+                document.getElementById('ingredientsSection').style.display = 'none';
+                document.getElementById('metricsSection').classList.remove('active');
+                document.getElementById('productionSection').classList.remove('active');
+                return;
+            }
+
+            currentRecipe = recipes[recipeId];
+            currentBatchSize = parseInt(document.getElementById('batchSize').value);
+
+            // Show recipe info
+            const infoDiv = document.getElementById('recipeInfo');
+            infoDiv.style.display = 'block';
+            infoDiv.innerHTML = `
+                <h3 style="font-size: 1.5rem; color: #FFB6C1; margin-bottom: 1rem;">${currentRecipe.name}</h3>
+                <p style="font-size: 1.1rem; color: #4A4035; margin-bottom: 1rem;">${currentRecipe.description}</p>
+                <div style="margin: 1rem 0;">
+                    ${currentRecipe.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.5rem;">
+                    <div>
+                        <strong>Category:</strong> ${currentRecipe.category}
+                    </div>
+                    <div>
+                        <strong>Difficulty:</strong> ${currentRecipe.difficulty}
+                    </div>
+                    <div>
+                        <strong>Prep Time:</strong> ${currentRecipe.prepTime} min
+                    </div>
+                    <div>
+                        <strong>Temperature:</strong> ${currentRecipe.temperature}°C
+                    </div>
+                </div>
+            `;
+
+            // Load ingredients
+            loadIngredients();
+
+            // Show sections
+            document.getElementById('ingredientsSection').style.display = 'block';
+            document.getElementById('metricsSection').classList.remove('active');
+            document.getElementById('productionSection').classList.remove('active');
+        }
+
+        function loadIngredients() {
+            if (!currentRecipe) return;
+
+            const multiplier = currentBatchSize / 1000;
+            const ingredientsList = document.getElementById('ingredientsList');
+            
+            let html = '<div style="overflow-x: auto;">';
+            html += '<table style="width: 100%; border-collapse: collapse;">';
+            html += `
+                <thead>
+                    <tr style="background: rgba(255, 182, 193, 0.2);">
+                        <th style="padding: 1rem; text-align: left; font-weight: 600; width: 35%;">Ingredient</th>
+                        <th style="padding: 1rem; text-align: center; font-weight: 600; width: 20%;">Quantity (g)</th>
+                        <th style="padding: 1rem; text-align: center; font-weight: 600; width: 15%;">%</th>
+                        <th style="padding: 1rem; text-align: center; font-weight: 600; width: 15%;">Cost ($)</th>
+                    </tr>
+                </thead>
+                <tbody>
+            `;
+
+            let totalCost = 0;
+            currentRecipe.ingredients.forEach(ing => {
+                const qty = (ing.quantity * multiplier).toFixed(1);
+                const cost = (ing.cost * multiplier).toFixed(2);
+                totalCost += parseFloat(cost);
+                
+                html += `
+                    <tr class="ingredient-row">
+                        <td style="padding: 0.75rem; text-align: left; vertical-align: top;">
+                            <strong>${ing.name}</strong>
+                            ${ing.notes ? `<br><small style="color: #999; font-size: 0.85em;">${ing.notes}</small>` : ''}
+                        </td>
+                        <td style="padding: 0.75rem; text-align: center; vertical-align: top;">${qty}</td>
+                        <td style="padding: 0.75rem; text-align: center; vertical-align: top;">${ing.percentage.toFixed(2)}%</td>
+                        <td style="padding: 0.75rem; text-align: center; vertical-align: top;">$${cost}</td>
+                    </tr>
+                `;
+            });
+
+            html += `
+                <tr style="background: rgba(255, 182, 193, 0.3); font-weight: 700; border-top: 2px solid rgba(255, 182, 193, 0.5);">
+                    <td style="padding: 1rem; text-align: left;"><strong>TOTAL</strong></td>
+                    <td style="padding: 1rem; text-align: center;"><strong>${currentBatchSize}g</strong></td>
+                    <td style="padding: 1rem; text-align: center;"><strong>100%</strong></td>
+                    <td style="padding: 1rem; text-align: center;"><strong>$${totalCost.toFixed(2)}</strong></td>
+                </tr>
+            `;
+
+            html += '</tbody></table></div>';
+            ingredientsList.innerHTML = html;
+        }
+
+        function recalculate() {
+            loadRecipe();
+        }
+
+        function calculateMetrics() {
+            if (!currentRecipe) return;
+
+            const multiplier = currentBatchSize / 1000;
+
+            // Update metrics
+            document.getElementById('podValue').textContent = currentRecipe.nutrition.pod.toFixed(2);
+            document.getElementById('npacValue').textContent = currentRecipe.nutrition.npac.toFixed(2);
+            document.getElementById('iceValue').textContent = currentRecipe.nutrition.iceFraction.toFixed(2);
+            document.getElementById('fatValue').textContent = currentRecipe.nutrition.fat.toFixed(2);
+            document.getElementById('tsValue').textContent = currentRecipe.nutrition.totalSolids.toFixed(2);
+            
+            // Calculate total cost
+            let totalCost = 0;
+            currentRecipe.ingredients.forEach(ing => {
+                totalCost += ing.cost * multiplier;
+            });
+            document.getElementById('costValue').textContent = '$' + totalCost.toFixed(2);
+
+            // Show metrics
+            document.getElementById('metricsSection').classList.add('active');
+
+            // Load production notes
+            const productionNotes = document.getElementById('productionNotes');
+            productionNotes.innerHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                    <div>
+                        <strong>Mixing Temp:</strong><br>
+                        ${currentRecipe.production.mixingTemp}°C
+                    </div>
+                    <div>
+                        <strong>Pasteurization:</strong><br>
+                        ${currentRecipe.production.pasteurizationTemp}°C
+                    </div>
+                    <div>
+                        <strong>Aging Time:</strong><br>
+                        ${currentRecipe.production.agingTime} hours
+                    </div>
+                    <div>
+                        <strong>Churning Temp:</strong><br>
+                        ${currentRecipe.production.churningTemp}°C
+                    </div>
+                </div>
+                <div style="background: rgba(255, 182, 193, 0.1); padding: 1.5rem; border-radius: 10px; border-left: 4px solid #FFB6C1;">
+                    <strong style="color: #FFB6C1;">📝 Special Instructions:</strong><br>
+                    <p style="margin-top: 0.5rem; color: #4A4035;">${currentRecipe.production.instructions}</p>
+                </div>
+            `;
+
+            document.getElementById('productionSection').classList.add('active');
+
+            // Scroll to metrics
+            document.getElementById('metricsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+    <script src="js/main.js"></script>
+</body>
+</html>

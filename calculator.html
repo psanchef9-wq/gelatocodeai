@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Gelato Expert Platform</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+.fade-in{animation:fadeIn 0.3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.section-card{transition:transform 0.2s, box-shadow 0.2s}
+.section-card:hover{transform:translateY(-4px);box-shadow:0 20px 25px -5px rgba(0,0,0,0.1)}
+</style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
+<div id="root"></div>
+<script>
+// ========================================
+// COMPLETE PROFESSIONAL KNOWLEDGE BASE
+// Integrated from professional gelato making science
+// ========================================
+
+const KB={
+// FUNDAMENTALS
+fund:`PROFESSIONAL GELATO FUNDAMENTALS
+
+ARTISAN vs INDUSTRIAL:
+• Overrun: 20-40% vs 80-100%
+• Temperature: -10 to -14°C vs -18 to -25°C  
+• Fat: 6-10% vs 10-16%
+• Texture: Dense, creamy vs Light, fluffy
+• Production: Daily, fresh vs Mass, frozen stock
+
+KEY PARAMETERS:
+• PAC (Anti-Freezing Power): 180-375 range
+  - Controls hardness and scoopability
+  - Based on molecular weight
+  - Lower MW = Higher PAC = Softer gelato
+
+• POD (Sweetening Power): Relative sweetness
+  - Sucrose = 100 reference
+  - Influences palatability
+
+• Total Solids: 32-42% in cream gelato
+• Overrun: Air incorporation 20-35%
+
+GELATO TYPES:
+• CREAM (Crema): Made with milk/cream base
+• SORBET (Sorbetto): No milk, fruit + water + sugar
+
+Classification by METHOD not main ingredient
+Example: Hazelnut is "cream" gelato (uses milk base)`,
+
+// PRODUCTION CYCLE
+prod:`COMPLETE PRODUCTION CYCLE
+
+7 ESSENTIAL STEPS:
+
+1. RECIPE FORMULATION
+   - Calculate PAC, POD, solids
+   - Balance all parameters
+   - Precision weighing
+
+2. PASTEURIZATION
+   - HIGH: 85°C for 1 minute
+   - LOW: 65°C for 30 minutes
+   - Complete sanitization
+   - Ingredient integration
+
+3. MATURATION (CRITICAL!)
+   - 4-12 hours at 4°C
+   - Stabilizer hydration
+   - Fat crystallization
+   - Flavor development
+   - NEVER SKIP THIS STEP
+
+4. BATCH FREEZING (Mantecazione)
+   - Simultaneous cooling & mixing
+   - -2.5°C: Freezing starts
+   - -4 to -5°C: Air incorporation
+   - -7 to -10°C: Extraction
+   - ~65% water frozen at -7°C
+
+5. BLAST CHILLING
+   - Rapid freeze to -18°C
+   - Air speed: 6 m/s
+   - Prevents large ice crystals
+   - 30-90 minutes
+
+6. STORAGE
+   - Pozzetti: -18 to -20°C
+   - Display: -14 to -16°C
+   - Maintain constant temp
+
+7. SELLING
+   - Proper presentation
+   - Temperature management
+   - Service technique`,
+
+// SORBET MASTERY
+sorb:`SORBET COMPLETE GUIDE
+
+GOLDEN RULE: 26-32% TOTAL SUGAR
+
+Why this range?
+• Below 26%: Too hard, icy
+• 26-32%: Perfect scoopability  
+• Above 32%: Too soft, melts fast
+
+FRUIT CLASSIFICATION:
+
+🔥 STRONG (10-20% usage):
+Lemon, Lime, Mango, Passionfruit, Grapefruit
+Very intense - small amount needed
+
+🌟 MEDIUM (20-50% usage):
+Strawberry, Kiwi, Apricot, Pineapple, Banana,
+Cherry, Melon, Blueberry, Peach, Raspberry
+Balanced intensity
+
+💧 WEAK (>50% usage):
+Watermelon, Orange, Apple, Pear, Grape
+Subtle - large amount needed
+
+ESSENTIAL INGREDIENTS:
+
+STABILIZER (Neutro): 0.5% (5g per kg)
+• Controls ice crystals
+• Improves texture
+• Extends shelf life
+• NEEDS 4-12h maturation!
+
+GLUCOSE SYRUP 42DE: 3-5%
+• 80% solids, 20% water
+• Less sweet than sucrose
+• Smooth texture
+• Prevents crystallization
+
+DEXTROSE: 2-5%
+• PAC 1.9 (high anti-freezing)
+• POD 0.7 (less sweet)
+• Keeps soft when cold
+
+INULIN (Fiber): 1-10%
+• For liquid sorbets (lemon)
+• Creates body structure
+• Prebiotic benefit
+
+CALCULATE FRUIT SUGAR:
+All fruits ≈ 10% natural sugar
+Example: 400g strawberry = 40g sugar
+Must account in total!
+
+FRUIT OPTIONS:
+• Fresh: Best marketing, seasonal
+• IQF Frozen: Year-round, consistent
+• Puree: Professional, reliable
+• Juice: Clean flavor, needs fiber
+• Paste: Flavor boost, 40-60g/kg
+
+TARGET PAC: 275-375 for sorbet`,
+
+// CREAM GELATO
+cream:`CREAM GELATO MASTERY
+
+TARGET RANGES:
+• Fat: 6-10%
+• MSNF (Milk Solids): 9-12%
+• Sugars: 16-22%
+• Total Solids: 36-42%
+• PAC: 200-280
+• POD: 16-22%
+• Protein: 4-5%
+• Stabilizers: 0.3-0.6%
+• Emulsifiers: 0.2-0.4%
+
+ESSENTIAL INGREDIENTS:
+
+MILK (Whole 3.5% fat):
+• 3.3% protein
+• 4.8% lactose
+• Base structure
+
+CREAM (30-35% fat):
+• Richness & creaminess
+• 8-15% of mix typical
+
+MILK POWDER (Skim):
+• 36% protein
+• Increases MSNF
+• 2-4% dosage max
+
+EGG YOLK:
+• 32% fat, 16% protein
+• Natural emulsifier (lecithin)
+• Rich flavor
+• 3-6% dosage
+• MUST pasteurize!
+
+STABILIZERS: 0.3-0.6%
+Lower than sorbet due to milk proteins
+
+EMULSIFIERS: 0.2-0.4%
+• Coat fat globules
+• Improve overrun
+• Smoother texture
+• Egg yolk is natural option
+
+BASE RECIPE - Fior di Latte:
+Whole Milk: 700g
+Cream 35%: 100g
+Sucrose: 150g
+Dextrose: 30g
+Milk Powder: 20g
+Stabilizer: 5g
+Emulsifier: 3g
+Total: 1008g
+
+Analysis: ~7% fat, ~240 PAC, ~38% solids`,
+
+// ADVANCED SUGARS
+sug_adv:`ADVANCED SUGAR SCIENCE
+
+PAC CALCULATION SYSTEM:
+Based on Molecular Weight (MW)
+PAC = 342 ÷ MW of sugar
+(Sucrose MW = 342, PAC = 1.0 reference)
+
+COMPLETE SUGAR DATABASE:
+
+SUCROSE: PAC 1.0, POD 1.0, MW 342
+Base sugar, 10-15% cream, 15-25% sorbet
+
+DEXTROSE: PAC 1.9, POD 0.7, MW 180
+High anti-freezing, less sweet, 2-8% usage
+
+FRUCTOSE: PAC 1.9, POD 1.3, MW 180
+Very sweet, use sparingly 2-5% max
+
+GLUCOSE 42DE: PAC 0.37, POD 0.8, MW ~928
+3-5% usage, smooth texture
+
+INVERTED SUGAR: PAC 1.6, POD 1.2
+50% dextrose + 50% fructose
+Prevents crystallization
+
+LACTOSE: PAC 1.0, POD 0.16, MW 342
+Milk sugar, barely sweet
+Can crystallize (sandy texture)
+
+TREHALOSE: PAC 1.0, POD 0.45
+Perfect for savory/gastronomic gelato
+Same PAC, half sweetness
+
+MALTODEXTRIN: PAC 0.3, POD 0.3
+HARDENS gelato, creates structure
+Use in low-fiber sorbets 2-5%
+
+HONEY: PAC 1.4, POD 1.2
+Natural inverted sugar
+Variable composition
+
+THREE PAC TYPES:
+
+RELATIVE PAC:
+Sum of (Sugar% × PAC)
+Basic calculations
+Target: 220-280 cream, 275-375 sorbet
+
+TOTAL PAC:
+Includes mineral salts from milk
+PAC ~5, MW 68
+Cream base: ~290-300 total
+
+ABSOLUTE PAC:
+Total PAC ÷ kg water in mix
+True concentration in aqueous phase
+More accurate theoretically
+
+PRACTICAL USE:
+Relative PAC ÷ -20 = Showcase temp estimate
+Example: 240 PAC ÷ -20 = -12°C display`,
+
+// POLYALCOHOLS
+poly:`POLYALCOHOLS & ALTERNATIVE SWEETENERS
+
+IDENTIFICATION:
+Ends in "-OL" = Alcohol (erythritol, sorbitol)
+Ends in "-OSE" = Sugar (sucrose, lactose)
+
+KEY PROPERTIES:
+✅ Lower calories: 2.4 vs 4 kcal/g
+✅ Lower glycemic index
+✅ Provide PAC (anti-freezing)
+❌ Laxative effect (poor absorption)
+❌ Individual tolerance varies
+
+ERYTHRITOL: PAC 2.8, POD 0.7
+• Best tolerance, minimal laxative
+• 0.2 kcal/g (lowest)
+• Perfect for low-cal, low-GI
+
+SORBITOL: PAC 1.9, POD 0.6
+• Max dose: 13-14g per serving
+• Moderate laxative effect
+
+XYLITOL: PAC 1.9, POD 1.0
+• Almost as sweet as sucrose
+• Dental benefits
+• Expensive
+
+MALTITOL: PAC 0.9, POD 0.9
+• Close to sucrose
+• Direct replacement
+
+ISOMALT: PAC 1.0, POD 0.5
+• Half as sweet
+• Sugar substitute
+
+CRITICAL FOR BALANCING:
+Traditional sugar % rules DON'T APPLY!
+
+USE PAC-BASED:
+Target 240-260 Total PAC (cream)
+Calculate until reaching target PAC
+
+FIBER PARADOX:
+Theory: More fiber → Less water → Softer
+Reality: More fiber → HARDER
+Why? Physical structure, not just freezing point
+
+HIGH-INTENSITY SWEETENERS:
+SUCRALOSE: 600× sweeter, PAC 0
+STEVIA: Natural, very sweet, PAC 0
+ASPARTAME: 200× sweeter, not heat stable
+
+ALL provide sweetness, NO structure!
+Must combine with:
+• Polyalcohols (PAC)
+• Maltodextrin (body)
+• Fiber (structure)`,
+
+// ALCOHOL
+alc:`ALCOHOL IN GELATO
+
+ETHANOL PROPERTIES:
+Theoretical PAC: 7.4 (MW 46)
+Reality: Lower in practice
+
+EFFECTIVE PAC:
+Cream bases: 2.5-3.0
+(Binds to proteins, fats)
+
+Sorbets: ~5.0
+(Simple matrix, higher effect)
+
+DOSAGE GUIDELINES:
+
+LIGHT (0.5-1%):
+15g pure alcohol per kg
+Subtle, family-friendly
+
+MEDIUM (1-2%):
+20g pure alcohol per kg
+Noticeable, adult product
+
+STRONG (2-3%):
+30g pure alcohol per kg
+Very soft, label required
+
+CALCULATION:
+(Beverage ml × % Alcohol) ÷ 100 = Pure ml
+
+Example - 40% Liquor:
+60ml × 40% = 24ml pure (24g)
+In 1kg = 2.4% alcohol
+
+TYPICAL RECIPES:
+
+AMARETTO: 70ml (28%) = 19.6g (~2%)
+LIMONCELLO: 100ml (30%) = 30g (3%)
+RUM: 50ml (40%) = 20g (2%)
+WINE: 150ml (13%) = 19.5g (~2%)
+
+BALANCING:
+• Subtract alcohol PAC from sugar needs
+• Account for beverage water content
+• Reduce other sugars
+
+CHALLENGES:
+Too much: Won't freeze
+Too little: Weak flavor
+Perfect: 1.5-2.5% pure alcohol`,
+
+// FIBER SCIENCE
+fib:`FIBER COMPLETE SCIENCE
+
+DEFINITION:
+Plant parts resistant to digestion
+Prebiotic benefit
+
+TYPES:
+
+INSOLUBLE:
+• Cellulose, cocoa fiber
+• Absorbs water, doesn't dissolve
+• Visible structure
+• Creates body
+
+SOLUBLE:
+• Inulin, pectin, FOS
+• Dissolves completely
+• Invisible
+• Increases viscosity
+
+THE PARADOX:
+
+THEORY: More fiber → Less water → Softer
+REALITY: More fiber → HARDER
+
+Why?
+• Creates physical structure
+• PAC only measures freezing
+• Doesn't account for hardness
+• Both effects occur
+
+INULIN (Most Common):
+• From chicory root
+• Fructose polymer
+• Completely soluble
+• Neutral taste
+
+Dosage:
+• Lemon sorbet: 5-10%
+• Fruit sorbet: 1-3%
+• Cream gelato: 0-2%
+
+Functions:
+✅ Body to liquid sorbets
+✅ Mimics fat mouthfeel
+✅ Prebiotic benefit
+✅ Clean label
+
+PECTIN:
+• From citrus, apple
+• HM or LM types
+• Fruit sorbets: 0.3-0.5%
+
+Functions:
+✅ Gel formation
+✅ Prevents separation
+✅ Natural ingredient
+
+POLYDEXTROSE:
+• Synthetic fiber
+• PAC 0.1, POD 0.1
+• 1 kcal/g
+• 2-5% usage
+
+BALANCING RULE:
+For every 10g fiber → Add 10g dextrose
+Compensates hardening effect
+
+PREBIOTIC vs PROBIOTIC:
+Prebiotic: Feeds bacteria (inulin, FOS)
+Probiotic: Is bacteria (Lactobacillus)
+
+LIMITATIONS:
+• Laxative at high doses
+• ~2 kcal/g (not zero)
+• Can affect flavor
+• Test and adjust`,
+
+// PROTEINS
+prot:`PROTEINS IN GELATO
+
+WHAT ARE PROTEINS:
+Amino acid chains
+"Noble": All essential amino acids
+Sources: Dairy, eggs, meat, legumes
+
+DENATURATION:
+Process where protein unfolds
+Causes: Heat (>50-60°C), acid, mechanical
+
+Effects:
+❌ Loss of original function
+✅ Nutritional value unchanged
+✅ NEW functional properties
+✅ Better for gelato
+
+MILK PROTEINS:
+
+CASEIN (80%):
+• Most heat-stable (>100°C)
+• Forms micelles
+• Primary emulsifier
+• Stabilizes fat globules
+
+WHEY (20%):
+• Denatures at 60-70°C
+• β-lactoglobulin, α-lactalbumin
+• Foam formation
+• Water binding
+
+DURING PASTEURIZATION (85°C):
+• Whey proteins denature → Better foam
+• Casein stays stable → Continues emulsifying
+• New interactions form → Improved texture
+
+TARGET: 4-5% protein in cream
+
+SOURCES:
+Whole Milk: 3.3% protein
+Skim Milk Powder: 36% protein
+Cream 35%: 2.2% protein
+Egg Yolk: 16% protein
+
+FUNCTIONS:
+
+✅ EMULSIFICATION:
+Coat fat globules, prevent coalescence
+
+✅ FOAM FORMATION:
+Stabilize air bubbles, improve overrun
+
+✅ WATER BINDING:
+Hold water, reduce free water
+
+✅ MOUTHFEEL:
+Creaminess, body, texture
+
+✅ FLAVOR CARRIER:
+Bind and release flavors
+
+EGG YOLK SPECIAL:
+• 48% water, 32% fat, 16% protein
+• Natural lecithin (emulsifier)
+• Richness + Color
+• Dosage: 2-6% of mix
+• MUST pasteurize (Salmonella risk)
+
+PROBLEMS:
+
+TOO LOW (<3%):
+Weak emulsion, poor air, thin
+
+TOO HIGH (>6%):
+Gummy texture, chewy, sandy
+
+OPTIMAL (4-5%):
+Perfect balance, professional quality
+
+VEGAN PROTEINS:
+• Pea (flavor issues)
+• Potato (best - neutral)
+• Soy (acceptable)
+Replace 1:1 with milk protein`,
+
+// FATS
+fats:`FATS & OILS SCIENCE
+
+TERMINOLOGY:
+FAT = Solid at room temp
+OIL = Liquid at room temp
+Both are LIPIDS
+
+COMPOSITION:
+96-97% Triglycerides
+3-4% Other (vitamins, pigments)
+
+TRIGLYCERIDE STRUCTURE:
+Glycerol backbone + 3 fatty acid chains
+
+SATURATED: No double bonds
+• Straight chains
+• Pack tightly → SOLID
+• High melting point
+
+UNSATURATED: Double bonds
+• Bent chains
+• Can't pack → LIQUID
+• Low melting point
+
+MELTING BEHAVIOR:
+NOT sharp point - RANGE
+Butter: 15-35°C range
+Coconut: 24-28°C range
+
+MILK FAT:
+• 70% saturated
+• 30% unsaturated
+• Complex (400+ triglycerides)
+• Melting: 15-35°C
+• Perfect for gelato
+
+CREAM:
+Light: 18-30% fat
+Heavy: 33-36% fat
+Double: 45-48% fat
+Typical use: 30-35% cream
+
+COCONUT OIL (Vegan):
+• 90% saturated
+• Melting: 24-28°C
+• Perfect substitute
+• Refined = neutral flavor
+• 6-10% dosage
+
+COCOA BUTTER:
+• From cocoa bean
+• Melting: 32-35°C
+• Sharp melting
+• Chocolate character
+
+FAT CRYSTALLIZATION:
+During maturation (4°C):
+• Partial crystallization
+• Network structure forms
+• Essential for air incorporation
+
+Without:
+❌ Poor overrun
+❌ Separation
+❌ Oily texture
+
+TARGETS:
+Minimum: 5% (barely creamy)
+Optimal: 7-9% (balanced)
+Rich: 10-12% (very rich)
+Maximum: 12% (problems above)
+
+TOO LITTLE (<5%):
+Icy, not creamy, fast melting
+
+TOO MUCH (>12%):
+Hard to churn, low air, coating
+
+PERFECT (7-9%):
+Professional quality, balanced
+
+CALCULATION EXAMPLE:
+Milk 650g (3.5%) = 22.75g
+Cream 100g (35%) = 35g
+Egg 40g (32%) = 12.8g
+Total: 70.55g = 7.05% ✓
+
+HOMOGENIZATION:
+• 100-200 bar pressure
+• Breaks globules to <2 μm
+• Stable emulsion
+• Not always necessary for artisan`,
+
+// PASTEURIZATION
+past:`PASTEURIZATION - CRITICAL STEP
+
+PURPOSE:
+• Kill pathogenic bacteria
+• Reduce bacterial load
+• Legal requirement
+• Complete integration
+• >72h shelf life at 4°C
+
+BACTERIAL DANGER ZONE: 10-40°C
+
+Temperature guide:
+Below 10°C: Dormant
+10-40°C: DANGER - rapid growth
+~40°C: Maximum reproduction
+Above 60°C: Start dying
+85°C: Complete sanitization
+
+TWO METHODS:
+
+HIGH PASTEURIZATION:
+• 85°C for 1 minute
+• Fast process
+• Standard professional
+• Most common
+
+LOW PASTEURIZATION:
+• 65°C for 30 minutes
+• Gentler
+• Small batches
+• Delicate ingredients
+
+CRITICAL RULES:
+
+1. MIX POWDERS WITH SUGAR FIRST
+All powders + sugar → Mix → Then add
+Prevents lumping
+
+2. ADD POWDERS AT 30-40°C
+Slowly, like "rain"
+Below 30°C: Won't dissolve
+Above 60°C: Lumps form
+
+3. NEVER DISTRACT
+One mistake = ruined batch
+Stay focused entire process
+
+4. CREAM DURING HEATING
+Add cream BEFORE 85°C
+Never cold cream at 50°C = DANGEROUS!
+
+Exception: Cold cream at 4°C OK
+Must be fresh, <4°C, use immediately
+
+WHAT HAPPENS:
+• Sugars dissolve completely
+• Milk powder disperses
+• Stabilizers absorb water
+• Emulsifiers activate
+• Proteins denature (whey)
+• Fats distribute
+• Complete homogenization
+
+PROCESS:
+1. Prepare powder/sugar mix
+2. Pour milk (+ cream)
+3. Start heating
+4. At 30-40°C: Add powders slowly
+5. Stir constantly
+6. Heat to 85°C
+7. Hold 1 minute
+8. Cool rapidly to 4°C
+9. Transfer to maturation
+
+Time: ~30-35 minutes total`,
+
+// MATURATION
+matur:`MATURATION - THE MOST IMPORTANT STEP
+
+NEVER SKIP THIS!
+
+PARAMETERS:
+• Temperature: 4°C exactly
+• Minimum: 4 hours
+• Recommended: 8-12 hours
+• Optimal: 24 hours
+• Maximum: 48 hours
+
+WHY ESSENTIAL:
+
+1. STABILIZER HYDRATION:
+• Takes 4-12 hours
+• Becomes functional
+• Creates viscosity
+• Controls crystals
+Primary benefit!
+
+2. FAT CRYSTALLIZATION:
+• Solidifies at 4°C
+• Forms network
+• Essential for air
+• Stabilizes bubbles
+
+3. PROTEIN HYDRATION:
+• Full water absorption
+• Better interactions
+• Improved stability
+
+4. FLAVOR DEVELOPMENT:
+• Ingredients meld
+• Complex profile
+• Better taste
+
+5. HOMOGENIZATION:
+• Complete uniformity
+• No separation
+
+WITHOUT MATURATION:
+
+❌ Icy, grainy texture
+❌ Large ice crystals
+❌ Poor air incorporation
+❌ Low overrun
+❌ Unstable structure
+❌ Fast melting
+❌ Weak flavor
+❌ Short shelf life
+
+WITH PROPER:
+
+✅ Smooth, creamy
+✅ Small crystals
+✅ Excellent air
+✅ Stable structure
+✅ Slow melting
+✅ Rich flavor
+✅ Extended life
+
+HOW TO MATURE:
+1. After pasteurization + cooling to 4°C
+2. Pour into clean containers
+3. Cover tightly
+4. Label (recipe, date, time)
+5. Refrigerate at 4°C
+6. Don't disturb
+7. Wait minimum time
+8. Proceed to batch freezing
+
+PRODUCTION SCHEDULE:
+
+NEXT-DAY (Ideal):
+Day 1, 5 PM: Pasteurize
+Day 2, 9 AM: Batch freeze
+= 16 hours maturation
+
+SAME-DAY (Minimum):
+9 AM: Pasteurize
+2 PM: Batch freeze
+= 5 hours (acceptable if necessary)
+
+PROFESSIONAL:
+Day 1 AM: Pasteurize
+Day 2 AM: Batch freeze
+= 24 hours (best quality)`,
+
+// BATCH FREEZING
+batch:`BATCH FREEZING (MANTECAZIONE)
+
+DEFINITION:
+Simultaneous cooling + mixing
+Transforms liquid → gelato
+
+TWO CRITICAL ELEMENTS:
+1. Water freezing into ice
+2. Air incorporation (overrun)
+
+TEMPERATURE JOURNEY:
+
+START: 4°C from maturation
+
+-2.5°C: Freezing begins
+First ice crystals form
+
+-4 to -5°C: Air incorporation zone
+Most air absorbed here
+Mix becomes foamy
+
+-7 to -10°C: Extraction point
+Process stops
+~65% water is ice (at -7°C)
+35% remains liquid (captured by sugars)
+
+PROGRESSIVE CONCENTRATION:
+As water freezes → Remaining water concentrates sugars
+→ Freezing point lowers → Not all water freezes
+
+OVERRUN - AIR FACTOR:
+
+Definition: Volume increase from air
+
+Formula:
+Overrun % = ((Final - Initial) / Initial) × 100
+
+Standards:
+• Sorbet: 15-20%
+• Cream: 30-40%
+• Industrial: 80-100%
+
+Why air matters:
+✅ Makes scoopable (not hard ice)
+✅ Creamy texture
+✅ Better mouthfeel
+✅ Lightness
+✅ Insulates (slows melting)
+
+FACTORS AFFECTING OVERRUN:
+
+SUGARS (High = Longer time = Lower overrun)
+MSNF (Stabilizes bubbles = Higher overrun)
+FATS (Moderate good, >12% = Lower overrun)
+STABILIZERS (Trap air = Better overrun)
+
+EXTRACTION TEMPERATURE:
+
+-7°C: Balance texture + stability
+-8 to -9°C: Firmer (for pozzetti)
+-10°C: Very firm (direct to display)
+
+MACHINE DYNAMICS:
+• Motor (paddle speed)
+• Compressor (cooling)
+• Electronic control (manages both)
+
+Fast paddles = Small crystals = Smooth
+Slow paddles = Large crystals = Grainy
+
+SENSORS DETECT:
+• Temperature drop
+• Consistency increase
+• Signals ready
+
+TIME:
+Typically 8-15 minutes depending on:
+• Batch size
+• Machine power
+• Formula
+• Target temperature`,
+
+// BLAST CHILLING
+blast:`BLAST CHILLING & STORAGE
+
+WHY BLAST CHILL:
+Rapidly freeze from -8°C to -18°C
+Prevents large crystal formation
+Stabilizes structure quickly
+
+BLAST CHILLER:
+• Air speed: 6 m/s (fast!)
+• Temperature: -35 to -40°C
+• Time: 30-90 minutes
+• Result: Excellent texture
+
+vs REGULAR FREEZER:
+• Minimal air movement
+• -18°C only
+• 4-6 hours
+• Acceptable but not optimal
+
+AFTER BLAST CHILLING:
+
+STORAGE OPTIONS:
+
+POZZETTI (Wells):
+• Temperature: -18 to -20°C
+• Static or ventilated
+• Best preservation
+• Less stress on product
+• Stable temperature
+• Minimal maintenance
+
+ADVANTAGES:
+✅ Excellent temperature constancy
+✅ Less stress on gelato
+✅ Better preservation
+✅ Easy management
+✅ Long shelf life
+
+DISADVANTAGES:
+❌ No visual merchandising
+❌ Customer doesn't see product
+
+DISPLAY CASE (Vetrina):
+• Temperature: -14 to -16°C
+• Air flow: 1-2 m/s over surface
+• Visual merchandising
+• Impulse buying
+
+ADVANTAGES:
+✅ Customers see gelato
+✅ Attractive presentation
+✅ Drives sales
+
+DISADVANTAGES:
+❌ More maintenance
+❌ Must sculpt daily
+❌ Temperature fluctuations
+❌ More stress on product
+
+CHOOSING SYSTEM:
+Ask: "Which sells MORE gelato in MY location?"
+
+High foot traffic = Display
+Regular customers = Pozzetti
+Quality priority = Pozzetti
+Visual appeal critical = Display
+
+STORAGE QUALITY:
+• Maintain constant temperature
+• Avoid fluctuations
+• Cover products
+• Label everything
+• FIFO rotation
+• Maximum quality: 3-5 days
+
+RECRYSTALLIZATION:
+During storage, ice crystals grow
+→ Gritty texture over time
+→ This is why fresh is best
+→ Can't completely prevent
+→ Stabilizers slow it down`,
+
+// EQUIPMENT
+equip:`PROFESSIONAL EQUIPMENT GUIDE
+
+THREE CORE MACHINES:
+
+1. PASTEURIZER (20-100L):
+Heating systems:
+• Water bath (most common)
+• Plate heating
+• "Dry water bath"
+
+Functions:
+• Sanitization (85°C)
+• Ingredient integration
+• Homogenization
+
+Key: Proper agitation essential
+
+2. BATCH FREEZER (5-30L):
+
+Types:
+• Vertical (historical)
+• Horizontal (modern, professional)
+
+Components:
+• Motor (paddle rotation)
+• Compressor (cooling)
+• Electronic control
+• Sensors
+
+Balance: Motor + compressor + control
+
+3. BLAST CHILLER:
+
+Types:
+• Countertop (10-15 kg)
+• Roll-in (60-100 kg)
+• Tunnel (continuous)
+
+Functions:
+• Rapid freeze
+• Temperature: -35 to -40°C
+• Air speed: 6 m/s
+
+SUPPORTING EQUIPMENT:
+
+• Refrigerator (4°C for maturation)
+• Pozzetti or display case
+• Work tables
+• Scales (±1g precision)
+• Immersion blender
+• Thermometer (±1°C)
+• Refractometer (Brix)
+• Storage containers
+
+LABORATORY DESIGN:
+
+GOLDEN TRIANGLE:
+Center these within reach:
+1. Pasteurizer
+2. Batch freezer
+3. Blast chiller
+
+Why?
+• Minimizes movement
+• Efficient workflow
+• Reduces time
+• Less physical strain
+
+OTHER ESSENTIALS:
+• Washing station
+• Ingredient storage
+• Work prep area
+• Finished product storage
+
+VISIBILITY:
+Transparent lab = Marketing advantage
+Show customers:
+• Cleanliness
+• Process
+• Artisan craft
+• Fresh production
+
+BY BUSINESS LEVEL:
+
+AMATEUR (<50 kg/week):
+• Small batch freezer 1.5-3L
+• Domestic freezer
+• Basic tools
+• $2-5k investment
+
+INTERMEDIATE (50-400 kg/week):
+• Professional batch 5-10L
+• Pasteurizer 20-30L
+• Blast chiller countertop
+• Pozzetti or small display
+• $15-40k investment
+
+PROFESSIONAL (>400 kg/week):
+• Multiple batch 20-30L
+• Pasteurizer 60-100L
+• Blast chiller roll-in
+• Multiple pozzetti
+• Walk-in freezer
+• $80-150k+ investment`,
+
+// TROUBLESHOOTING
+trouble:`PROBLEM SOLVING GUIDE
+
+❄️ TOO HARD:
+Causes:
+• PAC too low (<180)
+• Storage too cold
+• Not enough simple sugars
+
+Solutions:
+✅ Add dextrose 2-3%
+✅ Add glucose syrup 3-5%
+✅ Check display temp (-14 to -16°C)
+✅ Add invert sugar 2-3%
+✅ Increase PAC target
+
+💧 TOO SOFT:
+Causes:
+• PAC too high (>300)
+• Too much dextrose/fructose
+• Low total solids
+• Too much alcohol
+
+Solutions:
+✅ Reduce dextrose
+✅ Increase sucrose
+✅ Add milk powder 2-3%
+✅ Increase stabilizers
+✅ Check formula balance
+
+🧊 ICY/CRYSTALLIZATION:
+Causes:
+• Inadequate stabilizers
+• Poor/no maturation
+• Slow freezing
+• Temperature fluctuations
+• Old product
+
+Solutions:
+✅ Increase stabilizers to 0.5-0.6%
+✅ ENSURE 8-12h maturation minimum
+✅ Check batch freezer speed
+✅ Maintain stable storage temp
+✅ Use fresher
+✅ Verify PAC in range
+
+🏖️ SANDY/GRAINY:
+Causes:
+• Excess sucrose crystallization
+• Low stabilizers
+• Inadequate pectin (fruit)
+• Too much lactose
+• High milk powder
+
+Solutions:
+✅ Replace sucrose with glucose syrup
+✅ Add pectin 0.3-0.5%
+✅ Increase stabilizers
+✅ Reduce milk powder (<4%)
+✅ Check process
+
+🍮 GUMMY/ELASTIC:
+Causes:
+• Too much stabilizer (>0.8%)
+• Excess protein (>6%)
+• Wrong stabilizer type
+
+Solutions:
+✅ Reduce stabilizers to 0.3-0.4%
+✅ Balance protein to 4-5%
+✅ Check stabilizer blend
+✅ Review formula
+
+💨 MELTS TOO FAST:
+Causes:
+• Very high overrun
+• Low fat content
+• High PAC
+• Serving temp too warm
+
+Solutions:
+✅ Reduce air incorporation
+✅ Increase fat to 7-9%
+✅ Review sugar balance
+✅ Serve at correct temp
+✅ Check display temperature
+
+🧈 BUTTERY/OILY:
+Causes:
+• Too much fat (>12%)
+• Fat separation
+• Poor emulsification
+
+Solutions:
+✅ Reduce fat to 7-9%
+✅ Ensure proper pasteurization
+✅ Check emulsifier dosage
+✅ Verify maturation
+
+🥶 WON'T FREEZE:
+Causes:
+• Too much alcohol
+• PAC extremely high
+• Machine malfunction
+
+Solutions:
+✅ Reduce alcohol to <3%
+✅ Lower total PAC
+✅ Check batch freezer function
+✅ Recalculate formula
+
+⚪ SEPARATED/WATERY:
+Causes:
+• No stabilizers
+• Poor pasteurization
+• Incomplete maturation
+• Wrong storage
+
+Solutions:
+✅ Add stabilizers
+✅ Proper pasteurization
+✅ Full maturation time
+✅ Maintain temperature
+
+GENERAL TROUBLESHOOTING:
+1. Check formula balance
+2. Verify all process steps
+3. Review temperatures
+4. Test equipment
+5. Adjust and document
+6. Repeat if needed`,
+
+// SPECIAL GELATOS
+special:`SPECIAL GELATOS
+
+VEGAN GELATO:
+
+Eliminate:
+• All dairy (milk, cream, butter)
+• Eggs
+• Any animal products
+
+Replace with:
+✅ COCONUT OIL (6-10%)
+   - Melting: 24-28°C (perfect!)
+   - Refined = neutral flavor
+   - Best fat substitute
+
+✅ POTATO PROTEIN
+   - Most neutral flavor
+   - Replaces milk protein
+   - 1:1 substitution
+
+Alternatives:
+• Pea protein (vegetal taste)
+• Soy protein (acceptable)
+• Rice protein (weak)
+
+Plant milks:
+• Oat (creamy, neutral)
+• Almond (light, nutty)
+• Soy (protein-rich)
+• Coconut (rich, flavor)
+
+Challenges:
+• Achieving creaminess
+• Texture balance
+• Flavor development
+
+GASTRONOMIC/SAVORY:
+
+Goal: Meal pairing, courses
+
+KEY INGREDIENT: TREHALOSE
+• PAC 1.0 (same as sucrose)
+• POD 0.45 (half sweetness)
+• Allows savory flavors to shine
+
+Applications:
+• Appetizer courses
+• Palate cleansers
+• Cheese pairings
+• Savory flavors (tomato, basil, olive)
+
+Balance:
+Less sweetness → More flavor perception
+
+ALCOHOLIC GELATO:
+
+Key points:
+• 1.5-2.5% pure alcohol ideal
+• Label clearly
+• Adult product
+• Serves warmer (-12°C)
+• High PAC effect
+
+Common types:
+• Amaretto
+• Limoncello
+• Rum raisin
+• Wine-based
+• Liqueur infusions
+
+LOW GLYCEMIC INDEX:
+
+Use polyalcohols:
+• Erythritol (best)
+• Sorbitol
+• Maltitol
+• Xylitol
+
+Balance by PAC not %:
+Target 240-260 PAC total
+
+Add:
+• Fiber (structure)
+• Maltodextrin (body)
+• High-intensity sweeteners (taste)
+
+Challenge: Laxative effect at high doses
+
+SUGAR-FREE:
+
+Not truly zero sugar (milk has lactose)
+"No added sugar" more accurate
+
+Use:
+• Polyalcohols for PAC
+• Sweeteners for taste
+• Fiber for structure
+• Careful labeling
+
+LACTOSE-FREE:
+
+Use:
+• Lactose-free milk
+• PAC adjustment needed
+• Lactose-free cream
+• Or plant-based alternatives
+
+Note: Lactose PAC low (1.0)
+May need more dextrose
+
+NUTRACEUTICAL:
+
+Add beneficial compounds:
+• Polyphenols (berries, cocoa)
+• Beta-carotene (carrots)
+• Omega-3
+• Probiotics (challenging)
+• Vitamins
+
+Advantage:
+Cold preserves nutrients
+No heat damage
+
+LOW-CALORIE:
+
+Strategies:
+• Use polyalcohols (2.4 kcal/g vs 4)
+• Increase fiber
+• Reduce fat (minimum 5%)
+• Use intense sweeteners
+• More air (higher overrun)
+
+Calculation:
+• Carbs: 4 kcal/g
+• Protein: 4 kcal/g
+• Fat: 9 kcal/g
+• Fiber: 2 kcal/g
+• Polyalcohols: 2.4 kcal/g
+
+GLUTEN-FREE:
+
+Naturally gluten-free:
+Most gelato (no wheat)
+
+Watch for:
+• Cookie pieces
+• Cake inclusions
+• Some flavorings
+• Cross-contamination
+
+Easy to achieve
+Good marketing claim`
+};
+
+// ========================================
+// INGREDIENTS DATABASE
+// ========================================
+const ING=[
+{n:'Sucrose',pod:100,pac:100,s:100,w:0,f:0,p:0},
+{n:'Dextrose',pod:70,pac:190,s:100,w:0,f:0,p:0},
+{n:'Fructose',pod:130,pac:190,s:100,w:0,f:0,p:0},
+{n:'Glucose 42DE',pod:45,pac:140,s:80,w:20,f:0,p:0},
+{n:'Glucose 60DE',pod:65,pac:180,s:80,w:20,f:0,p:0},
+{n:'Invert Sugar',pod:115,pac:130,s:75,w:25,f:0,p:0},
+{n:'Trehalose',pod:45,pac:100,s:100,w:0,f:0,p:0},
+{n:'Maltodextrin',pod:30,pac:30,s:100,w:0,f:0,p:0},
+{n:'Whole Milk 3.5%',pod:0,pac:0,s:12.5,w:87.5,f:3.5,p:3.3},
+{n:'Skim Milk',pod:0,pac:0,s:10,w:90,f:0.1,p:3.4},
+{n:'Cream 30%',pod:0,pac:0,s:35,w:65,f:30,p:2.5},
+{n:'Cream 35%',pod:0,pac:0,s:40,w:60,f:35,p:2.2},
+{n:'Milk Powder Skim',pod:0,pac:0,s:96,w:4,f:0,p:36},
+{n:'Milk Powder Whole',pod:0,pac:0,s:97,w:3,f:26,p:26},
+{n:'Egg Yolk',pod:0,pac:0,s:52,w:48,f:32,p:16},
+{n:'Stabilizer',pod:0,pac:0,s:100,w:0,f:0,p:0},
+{n:'Emulsifier',pod:0,pac:0,s:100,w:0,f:0,p:0},
+{n:'Cocoa 22%',pod:0,pac:0,s:97,w:3,f:22,p:20},
+{n:'Hazelnut Paste',pod:0,pac:0,s:98,w:2,f:60,p:15},
+{n:'Pistachio Paste',pod:0,pac:0,s:96,w:4,f:55,p:20},
+{n:'Coconut Oil',pod:0,pac:0,s:100,w:0,f:100,p:0},
+{n:'Inulin',pod:0,pac:0,s:100,w:0,f:0,p:0},
+{n:'Erythritol',pod:70,pac:280,s:100,w:0,f:0,p:0},
+{n:'Sorbitol',pod:60,pac:190,s:100,w:0,f:0,p:0},
+{n:'Strawberry Puree',pod:0,pac:0,s:10,w:90,f:0,p:0.8},
+{n:'Mango Puree',pod:0,pac:0,s:15,w:85,f:0,p:0.5},
+{n:'Lemon Juice',pod:0,pac:0,s:8,w:92,f:0,p:0.4}
+];
+
+const REC=[
+{n:'Vanilla Cream',c:'Classic',b:'Milk 700g, Cream 35% 100g, Sucrose 150g, Dextrose 30g, Milk Powder 20g, Stabilizer 5g, Emulsifier 3g, Vanilla 2g',note:'Base cream, PAC ~240'},
+{n:'Chocolate',c:'Classic',b:'Milk 600g, Cream 80g, Sucrose 140g, Dextrose 35g, Cocoa 22% 80g, Milk Powder 30g, Stabilizer 5g, Emulsifier 3g',note:'Rich, adjust cocoa for intensity'},
+{n:'Hazelnut',c:'Nut',b:'Milk 650g, Cream 80g, Sucrose 130g, Dextrose 35g, Hazelnut Paste 120g, Milk Powder 20g, Stabilizer 5g, Emulsifier 3g',note:'Quality paste = quality gelato'},
+{n:'Pistachio',c:'Nut',b:'Milk 620g, Cream 70g, Sucrose 130g, Dextrose 40g, Pistachio Paste 120g, Salt 3g, Milk Powder 20g, Stabilizer 5g, Emulsifier 3g',note:'Real pistachio essential'},
+{n:'Strawberry Sorbet',c:'Fruit',b:'Strawberry 400g, Sucrose 180g, Dextrose 30g, Glucose 42DE 20g, Water 360g, Stabilizer 7g, Lemon 10g',note:'26% total sugar'},
+{n:'Lemon Sorbet',c:'Fruit',b:'Lemon Juice 180g, Sucrose 220g, Dextrose 40g, Water 540g, Inulin 15g, Stabilizer 5g',note:'Freeze immediately'},
+{n:'Vegan Vanilla',c:'Vegan',b:'Oat Milk 700g, Coconut Oil 80g, Sucrose 150g, Dextrose 30g, Potato Protein 20g, Stabilizer 6g, Vanilla 2g',note:'Refined coconut oil best'},
+{n:'Amaretto Cream',c:'Alcoholic',b:'Milk 680g, Cream 100g, Sucrose 130g, Dextrose 25g, Amaretto 28% 70g, Milk Powder 20g, Stabilizer 5g, Emulsifier 3g',note:'~2% alcohol'},
+{n:'Tiramisu',c:'Specialty',b:'Milk 600g, Cream 100g, Mascarpone 80g, Sucrose 130g, Dextrose 30g, Coffee 30g, Milk Powder 15g, Stabilizer 5g, Emulsifier 3g',note:'Coffee concentrate'},
+{n:'Mango Sorbet',c:'Fruit',b:'Mango Puree 450g, Sucrose 190g, Dextrose 35g, Glucose 42DE 25g, Water 290g, Stabilizer 7g, Lime 5g',note:'Use ripe mango'}
+];
+
+// ========================================
+// APP STATE & LOGIC
+// ========================================
+let pg='home',ing=[{n:'',a:''}],res=null,q='',ans='',kb='',sr=null;
+
+function calc(){
+let t=0,pac=0,pod=0,s=0,w=0,f=0,p=0;
+ing.forEach(i=>{
+const d=ING.find(x=>x.n===i.n);
+if(d&&i.a){
+const a=+i.a;
+t+=a;
+pac+=(d.pac*a)/100;
+pod+=(d.pod*a)/100;
+s+=(d.s*a)/100;
+w+=(d.w*a)/100;
+f+=(d.f*a)/100;
+p+=(d.p*a)/100;
+}
+});
+if(t===0){alert('Add ingredients');return;}
+res={w:t.toFixed(0),pac:pac.toFixed(0),pod:pod.toFixed(1),s:s.toFixed(1),wt:w.toFixed(1),f:f.toFixed(1),p:p.toFixed(1)};
+rend();
+}
+
+function ai(){
+const x=q.toLowerCase();
+if(x.includes('pac')||x.includes('hard')||x.includes('soft'))ans=KB.sug_adv;
+else if(x.includes('pod')||x.includes('sweet'))ans=KB.sug_adv;
+else if(x.includes('stabilizer')||x.includes('icy')||x.includes('crystal'))ans=KB.past+'\n\n'+KB.matur;
+else if(x.includes('emulsifier'))ans=KB.prot;
+else if(x.includes('problem')||x.includes('fix')||x.includes('trouble'))ans=KB.trouble;
+else if(x.includes('production')||x.includes('process')||x.includes('cycle'))ans=KB.prod;
+else if(x.includes('pasteuriz'))ans=KB.past;
+else if(x.includes('matur')||x.includes('aging'))ans=KB.matur;
+else if(x.includes('batch')||x.includes('freez')||x.includes('churn'))ans=KB.batch;
+else if(x.includes('blast')||x.includes('chill')||x.includes('storage'))ans=KB.blast;
+else if(x.includes('cream')||x.includes('crema'))ans=KB.cream;
+else if(x.includes('sorbet')||x.includes('fruit'))ans=KB.sorb;
+else if(x.includes('vegan')||x.includes('special')||x.includes('alcohol')||x.includes('low'))ans=KB.special;
+else if(x.includes('protein'))ans=KB.prot;
+else if(x.includes('fat')||x.includes('oil')||x.includes('coconut'))ans=KB.fats;
+else if(x.includes('fiber')||x.includes('inulin'))ans=KB.fib;
+else if(x.includes('polyalcohol')||x.includes('erythritol')||x.includes('sorbitol'))ans=KB.poly;
+else if(x.includes('alcohol')||x.includes('liquor')||x.includes('wine'))ans=KB.alc;
+else if(x.includes('equipment')||x.includes('machine'))ans=KB.equip;
+else ans=KB.fund+'\n\nAsk about: PAC, POD, stabilizers, problems, recipes, production, equipment';
+rend();
+}
+
+function rend(){
+document.getElementById('root').innerHTML=
+pg==='home'?home():
+pg==='calc'?calculator():
+pg==='ai'?expert():
+pg==='rec'?recipes():
+pg==='kb'?knowledge():'';
+}
+
+function home(){
+return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4">
+<h1 class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+Professional Gelato Expert Platform</h1>
+<p class="text-sm text-gray-600 mt-1">Complete professional knowledge & tools</p>
+</div></nav>
+<div class="max-w-7xl mx-auto px-4 py-12">
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+${[
+['📊','Calculator','POD/PAC/Solids Analysis','calc','from-blue-500 to-cyan-500'],
+['🎓','AI Expert','Professional Consultation','ai','from-purple-500 to-pink-500'],
+['📚','Recipes','10+ Professional Formulas','rec','from-green-500 to-emerald-500'],
+['📖','Knowledge','Complete Reference','kb','from-orange-500 to-red-500']
+].map(([i,t,d,p,g])=>`
+<div onclick="pg='${p}';rend();" class="section-card cursor-pointer bg-white rounded-2xl shadow-lg p-8 hover:shadow-2xl">
+<div class="text-6xl mb-4">${i}</div>
+<h2 class="text-2xl font-bold mb-2 bg-gradient-to-r ${g} bg-clip-text text-transparent">${t}</h2>
+<p class="text-gray-600">${d}</p>
+<div class="mt-4 text-purple-600 font-semibold">Explore →</div>
+</div>`).join('')}
+</div>
+<div class="mt-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl p-8 text-white">
+<h2 class="text-3xl font-bold mb-4">Professional Gelato Making Platform</h2>
+<p class="text-lg mb-4">Complete knowledge base from professional gelato science</p>
+<div class="grid md:grid-cols-3 gap-4 text-sm">
+<div>✓ Volume 1 & 2 Knowledge</div>
+<div>✓ Advanced Calculations</div>
+<div>✓ Problem Solving</div>
+<div>✓ Recipe Formulation</div>
+<div>✓ Equipment Guidance</div>
+<div>✓ Special Gelatos</div>
+</div>
+</div>
+</div></div>`;
+}
+
+function calculator(){
+return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<button onclick="pg='home';rend();" class="text-purple-600 font-semibold">← Home</button>
+<h2 class="text-xl font-bold">Professional Calculator</h2>
+<button onclick="pg='ai';rend();" class="text-purple-600 font-semibold">AI Expert →</button>
+</div></nav>
+<div class="max-w-6xl mx-auto px-4 py-8">
+<div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+<h3 class="text-2xl font-bold mb-4">Recipe Calculator</h3>
+<div class="space-y-3 mb-6">
+${ing.map((x,i)=>`<div class="flex gap-3">
+<select onchange="ing[${i}].n=this.value;rend();" class="flex-1 px-4 py-2 border rounded-lg bg-white">
+<option value="">Select ingredient...</option>
+${ING.map(t=>`<option value="${t.n}"${x.n===t.n?' selected':''}>${t.n}</option>`).join('')}
+</select>
+<input type="number" value="${x.a}" onchange="ing[${i}].a=this.value" placeholder="grams" class="w-32 px-4 py-2 border rounded-lg">
+${i>0?`<button onclick="ing.splice(${i},1);rend();" class="px-3 text-red-500 hover:bg-red-50 rounded-lg">×</button>`:''}
+</div>`).join('')}
+</div>
+<div class="flex gap-4">
+<button onclick="ing.push({n:'',a:''});rend();" class="px-6 py-2 bg-gray-200 rounded-lg hover:bg-gray-300">+ Add Ingredient</button>
+<button onclick="calc();" class="px-8 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold hover:shadow-lg">Calculate</button>
+</div>
+</div>
+${res?`<div class="bg-white rounded-xl shadow-lg p-6 fade-in">
+<h3 class="text-2xl font-bold mb-6">Technical Analysis</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+${[
+['Weight',res.w+'g','blue',''],
+['PAC',res.pac,'purple','200-280 cream'],
+['POD',res.pod+'%','pink','16-22%'],
+['Solids',res.s+'%','green','36-42%'],
+['Water',res.wt+'%','cyan',''],
+['Fat',res.f+'%','yellow','6-10%'],
+['Protein',res.p+'%','indigo','4-5%'],
+['Status','✓','emerald','Balanced']
+].map(([l,v,c,t])=>`
+<div class="bg-${c}-50 rounded-xl p-4 border-2 border-${c}-200">
+<div class="text-sm text-gray-600 font-semibold">${l}</div>
+<div class="text-3xl font-bold text-${c}-700 my-2">${v}</div>
+${t?`<div class="text-xs text-gray-500">${t}</div>`:''}</div>`).join('')}
+</div></div>`:''}</div></div>`;
+}
+
+function expert(){
+return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<button onclick="pg='calc';rend();" class="text-purple-600 font-semibold">← Calculator</button>
+<h2 class="text-xl font-bold">AI Gelato Expert</h2>
+<button onclick="pg='rec';rend();" class="text-purple-600 font-semibold">Recipes →</button>
+</div></nav>
+<div class="max-w-5xl mx-auto px-4 py-8">
+<div class="bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl p-8 text-white mb-6">
+<h2 class="text-3xl font-bold mb-2">🎓 Professional Gelato Expert</h2>
+<p class="text-lg">Complete professional knowledge - Ask anything!</p>
+</div>
+<div class="bg-white rounded-xl shadow-lg p-6 mb-6">
+<label class="block text-sm font-semibold text-gray-700 mb-2">Your Question:</label>
+<textarea id="q" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg h-32 mb-4 focus:border-purple-500 focus:outline-none"
+placeholder="Examples:
+• Why is my gelato icy?
+• How to calculate PAC?
+• What stabilizers should I use?
+• Explain maturation process
+• How to fix hard gelato?">${q}</textarea>
+<button onclick="q=document.getElementById('q').value;ai();" 
+class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white py-3 rounded-lg font-bold text-lg hover:shadow-lg">
+🤖 Ask Expert</button>
+</div>
+${ans?`<div class="bg-white rounded-xl shadow-lg p-8 border-2 border-purple-200 fade-in">
+<h3 class="text-xl font-bold mb-4 text-purple-900">📖 Expert Response:</h3>
+<div class="whitespace-pre-line text-gray-800 leading-relaxed">${ans}</div>
+</div>`:''}</div></div>`;
+}
+
+function recipes(){
+if(sr)return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<button onclick="sr=null;rend();" class="text-purple-600 font-semibold">← Back to Recipes</button>
+<h2 class="text-xl font-bold">${sr.n}</h2>
+<div></div>
+</div></nav>
+<div class="max-w-4xl mx-auto px-4 py-8">
+<div class="bg-white rounded-xl shadow-lg p-8">
+<h1 class="text-4xl font-bold mb-4">${sr.n}</h1>
+<span class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full font-semibold mb-6">${sr.c}</span>
+<div class="bg-blue-50 rounded-lg p-6 mb-4 border-2 border-blue-200">
+<h3 class="font-bold text-lg mb-3 text-blue-900">Formula (1000g total):</h3>
+<p class="text-gray-800 leading-relaxed">${sr.b}</p>
+</div>
+<div class="bg-green-50 rounded-lg p-6 border-2 border-green-200">
+<h3 class="font-bold text-lg mb-3 text-green-900">Professional Notes:</h3>
+<p class="text-gray-800">${sr.note}</p>
+</div>
+</div></div></div>`;
+
+return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<button onclick="pg='ai';rend();" class="text-purple-600 font-semibold">← AI Expert</button>
+<h2 class="text-xl font-bold">Professional Recipes (${REC.length})</h2>
+<button onclick="pg='kb';rend();" class="text-purple-600 font-semibold">Knowledge →</button>
+</div></nav>
+<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+${REC.map(r=>`<div onclick='sr=${JSON.stringify(r).replace(/'/g,"\\'")}; rend();' 
+class="section-card cursor-pointer bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl">
+<h3 class="text-2xl font-bold mb-2">${r.n}</h3>
+<span class="inline-block bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm mb-3">${r.c}</span>
+<p class="text-sm text-gray-600 mb-4">${r.b.substring(0,100)}...</p>
+<button class="w-full py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-semibold">
+View Recipe →</button>
+</div>`).join('')}
+</div></div></div>`;
+}
+
+function knowledge(){
+if(kb){
+const title=kb.replace(/_/g,' ').split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4">
+<button onclick="kb='';rend();" class="text-purple-600 font-semibold">← Back to Knowledge Base</button>
+</div></nav>
+<div class="max-w-5xl mx-auto px-4 py-8">
+<div class="bg-white rounded-xl shadow-lg p-8">
+<h1 class="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+${title}</h1>
+<div class="whitespace-pre-line text-gray-800 leading-relaxed text-lg">${KB[kb]}</div>
+</div></div></div>`;
+}
+
+return`<div class="min-h-screen">
+<nav class="bg-white shadow"><div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+<button onclick="pg='rec';rend();" class="text-purple-600 font-semibold">← Recipes</button>
+<h2 class="text-xl font-bold">Complete Knowledge Base</h2>
+<button onclick="pg='home';rend();" class="text-purple-600 font-semibold">Home →</button>
+</div></nav>
+<div class="max-w-7xl mx-auto px-4 py-8">
+<div class="bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-8 text-white mb-8">
+<h1 class="text-4xl font-bold mb-3">📚 Professional Knowledge Base</h1>
+<p class="text-xl">Complete reference from professional gelato science</p>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+${Object.keys(KB).map(k=>{
+const t=k.replace(/_/g,' ').split(' ').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');
+return`<div onclick="kb='${k}';rend();" 
+class="section-card cursor-pointer bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl">
+<h3 class="text-xl font-bold mb-3 text-purple-900">${t}</h3>
+<p class="text-sm text-gray-600 line-clamp-3 mb-4">${KB[k].substring(0,120)}...</p>
+<div class="text-purple-600 font-semibold">Read More →</div>
+</div>`;
+}).join('')}
+</div></div></div>`;
+}
+
+rend();
+</script>
+</body>
+</html>
